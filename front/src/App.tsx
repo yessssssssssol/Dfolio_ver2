@@ -1,18 +1,18 @@
-import React, { useState, useEffect, useReducer, createContext } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect, useReducer, createContext } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import * as Api from "./api";
-import { loginReducer } from "./reducer";
+import * as Api from './api';
+import { loginReducer } from './reducer';
 
-import Header from "./components/Header";
-import LoginForm from "./components/user/LoginForm";
-import Network from "./components/user/Network";
-import RegisterForm from "./components/user/RegisterForm";
-import Portfolio from "./components/Portfolio";
-import Withdrawal from "./components/user/Withdrawal";
+import Header from './components/Header';
+import LoginForm from './components/User/LoginForm';
+import Network from './components/User/Network';
+import RegisterForm from './components/User/RegisterForm';
+import Portfolio from './components/Portfolio';
+import Withdrawal from './components/User/Withdrawal';
 
-import ResetPassword from "./components/user/ResetPassword";
-import ChangePassword from "./components/user/ChangePassword";
+import ResetPassword from './components/User/ResetPassword';
+import ChangePassword from './components/User/ChangePassword';
 
 export const UserStateContext = createContext(null);
 export const DispatchContext = createContext(null);
@@ -32,18 +32,18 @@ function App() {
   const fetchCurrentUser = React.useCallback(async () => {
     try {
       // 이전에 발급받은 토큰이 있다면, 이를 가지고 유저 정보를 받아옴.
-      const res = await Api.get("user/current");
+      const res = await Api.get('user/current');
       const currentUser = res.data;
 
       // dispatch 함수를 통해 로그인 성공 상태로 만듦.
       dispatch({
-        type: "LOGIN_SUCCESS",
+        type: 'LOGIN_SUCCESS',
         payload: currentUser,
       });
 
-      console.log("%c sessionStorage에 토큰 있음.", "color: #d93d1a;");
+      console.log('%c sessionStorage에 토큰 있음.', 'color: #d93d1a;');
     } catch {
-      console.log("%c SessionStorage에 토큰 없음.", "color: #d93d1a;");
+      console.log('%c SessionStorage에 토큰 없음.', 'color: #d93d1a;');
     }
     // fetchCurrentUser 과정이 끝났으므로, isFetchCompleted 상태를 true로 바꿔줌
     setIsFetchCompleted(true);
@@ -55,7 +55,7 @@ function App() {
   }, []);
 
   if (!isFetchCompleted) {
-    return "loading...";
+    return 'loading...';
   }
 
   return (
@@ -64,15 +64,15 @@ function App() {
         <Router>
           {isLogin && <Header />}
           <Routes>
-            <Route path="/" exact element={<Portfolio />} />
-            <Route path="/login" element={<LoginForm />} />
-            <Route path="/register" element={<RegisterForm />} />
-            <Route path="/users/:userId" element={<Portfolio />} />
-            <Route path="/network" element={<Network />} />
-            <Route path="*" element={<Portfolio />} />
-            <Route path="/Withdrawal" element={<Withdrawal />} />
-            <Route path="/reset-password" element={<ResetPassword />} />
-            <Route path="/change-password" element={<ChangePassword />} />
+            <Route path='/' exact element={<Portfolio />} />
+            <Route path='/login' element={<LoginForm />} />
+            <Route path='/register' element={<RegisterForm />} />
+            <Route path='/users/:userId' element={<Portfolio />} />
+            <Route path='/network' element={<Network />} />
+            <Route path='*' element={<Portfolio />} />
+            <Route path='/Withdrawal' element={<Withdrawal />} />
+            <Route path='/reset-password' element={<ResetPassword />} />
+            <Route path='/change-password' element={<ChangePassword />} />
           </Routes>
         </Router>
       </UserStateContext.Provider>
