@@ -1,4 +1,4 @@
-### Dfolio_ver2
+### Dfolio_ver2(진행중)
 
 JavaScript -> TypeScript로 마이그레이션
 
