@@ -2,9 +2,9 @@
   "name": "cafe-server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.tsx",
   "scripts": {
-    "start": "nodemon index.js --exec babel-node",
+    "start": "nodemon index.tsx --exec babel-node",
     "test": "jest --setupFiles dotenv/config"
   },
   "repository": {
@@ -20,6 +20,12 @@
   "homepage": "https://github.com/",
   "dependencies": {
     "@sindresorhus/is": "^4.2.0",
+    "@types/jest": "^28.1.8",
+    "@types/node": "^18.7.13",
+    "@types/react": "^18.0.17",
+    "@types/react-dom": "^18.0.6",
+    "@types/react-router-dom": "^5.3.3",
+    "barbel": "^0.0.9",
     "bcrypt": "^5.0.1",
     "cors": "^2.8.5",
     "express": "^4.17.1",
@@ -29,6 +35,7 @@
     "mongoose": "^6.2.1",
     "nodemailer": "^6.7.3",
     "supertest": "^6.1.6",
+    "typescript": "^4.7.4",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -37,6 +44,8 @@
     "@babel/node": "^7.16.8",
     "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.4",
+    "@types/cors": "^2.8.12",
+    "@types/express": "^4.17.13",
     "dotenv": "^16.0.0",
     "nodemon": "^2.0.15"
   },

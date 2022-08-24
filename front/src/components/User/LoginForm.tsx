@@ -1,18 +1,18 @@
-import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
-import { Form } from "react-bootstrap";
-import { DispatchContext } from "../../App";
+import React, { useState, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { Form } from 'react-bootstrap';
+import { DispatchContext } from '../../App';
 
-import * as Api from "../../api";
-import "../../styles/scss/LoginForm.scss";
+import * as Api from '../../api';
+import '../../styles/scss/LoginForm.scss';
 
 function LoginForm() {
   const navigate = useNavigate();
   const dispatch = useContext(DispatchContext);
   //useState로 email 상태를 생성함.
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState('');
   //useState로 password 상태를 생성함.
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState('');
   //이메일이 abc@example.com 형태인지 regex를 이용해 확인함.
   const validateEmail = (email) => {
     return email
@@ -32,7 +32,7 @@ function LoginForm() {
     e.preventDefault();
     try {
       // "user/login" 엔드포인트로 post요청함.
-      const res = await Api.post("user/login", {
+      const res = await Api.post('user/login', {
         email,
         password,
       });
@@ -41,7 +41,7 @@ function LoginForm() {
       const currentPassword = res.data.password; // passwordRouter 에서 필요하여 일단 보내보려고 함.
 
       if (res.data.passwordReset === true) {
-        navigate("/change-password", {
+        navigate('/change-password', {
           state: {
             email: emailData,
             currentPassword: currentPassword,
@@ -57,54 +57,54 @@ function LoginForm() {
         // JWT 토큰은 유저 정보의 token임.
         const jwtToken = user.token;
         // sessionStorage에 "userToken"이라는 키로 JWT 토큰을 저장함.
-        sessionStorage.setItem("userToken", jwtToken);
+        sessionStorage.setItem('userToken', jwtToken);
         // dispatch 함수를 이용해 로그인 성공 상태로 만듦.
         dispatch({
-          type: "LOGIN_SUCCESS",
+          type: 'LOGIN_SUCCESS',
           payload: user,
         });
         // 기본 페이지로 이동함.
-        navigate("/", { replace: true });
+        navigate('/', { replace: true });
       }
     } catch (err) {
-      console.log("로그인에 실패하였습니다.\n", err);
+      console.log('로그인에 실패하였습니다.\n', err);
     }
   };
   return (
-    <div className="login-container">
-      <div className="login-left-container">
-        <div className="login-left-wrap">
+    <div className='login-container'>
+      <div className='login-left-container'>
+        <div className='login-left-wrap'>
           <h1>Dfolio</h1>
           <p>Discover the world’s top developers</p>
         </div>
       </div>
-      <div className="login-right-container">
-        <form className="right-top-wrap">
+      <div className='login-right-container'>
+        <form className='right-top-wrap'>
           <span>Don't have an account?</span>
           <button
-            className="create-account-btn shadow-light"
-            onClick={() => navigate("/register")}
+            className='create-account-btn shadow-light'
+            onClick={() => navigate('/register')}
           >
             Register
           </button>
         </form>
-        <div id="login-right-logo">Dfolio</div>
-        <div className="login-input-container" onSubmit={handleSubmit}>
+        <div id='login-right-logo'>Dfolio</div>
+        <div className='login-input-container' onSubmit={handleSubmit}>
           <div>
-            <div id="login-eamil-container">
+            <div id='login-eamil-container'>
               <Form.Control
-                className="login-input-wrap input-id"
-                id="login-input-id"
-                placeholder="Email"
-                type="email"
-                autoComplete="on"
+                className='login-input-wrap input-id'
+                id='login-input-id'
+                placeholder='Email'
+                type='email'
+                autoComplete='on'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               />
               {!isEmailValid && (
                 <p
-                  className="text-primary"
-                  style={{ fontSize: "12px", margin: "5px 0 0 0" }}
+                  className='text-primary'
+                  style={{ fontSize: '12px', margin: '5px 0 0 0' }}
                 >
                   Email is invalid.
                 </p>
@@ -112,40 +112,40 @@ function LoginForm() {
             </div>
           </div>
           <div>
-            <div id="login-password-container">
+            <div id='login-password-container'>
               <Form.Control
-                className="login-input-wrap input-password"
-                id="login-input-password"
-                placeholder="Password"
-                type="password"
-                autoComplete="on"
+                className='login-input-wrap input-password'
+                id='login-input-password'
+                placeholder='Password'
+                type='password'
+                autoComplete='on'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
               {!isPasswordValid && (
                 <p
-                  className="text-primary"
-                  style={{ fontSize: "12px", margin: "5px 0 0 0" }}
+                  className='text-primary'
+                  style={{ fontSize: '12px', margin: '5px 0 0 0' }}
                 >
                   Password is too short (minimum is 4 characters)
                 </p>
               )}
             </div>
             <p
-              className="password-find"
+              className='password-find'
               style={{
-                fontSize: "12px",
-                color: "gray",
-                textAlign: "right",
-                cursor: "pointer",
+                fontSize: '12px',
+                color: 'gray',
+                textAlign: 'right',
+                cursor: 'pointer',
               }}
-              onClick={() => navigate("/reset-password")}
+              onClick={() => navigate('/reset-password')}
             >
               Forgot password?
             </p>
           </div>
-          <form className="login-btn-wrap">
-            <button className="login-btn" type="submit" disabled={!isFormValid}>
+          <form className='login-btn-wrap'>
+            <button className='login-btn' type='submit' disabled={!isFormValid}>
               Login
             </button>
           </form>
